@@ -1,4 +1,4 @@
-import {Catalog, fromFiles} from '../src/catalog';
+import {Catalog, Dataset, fromFiles, IRI} from '../src/catalog';
 
 let catalog: Catalog;
 
@@ -11,7 +11,7 @@ describe('Catalog', () => {
     const store = await fromFiles('catalog/');
     const catalog = await Catalog.fromStore(store);
     expect(catalog.datasets.length).toBe(6);
-    expect(catalog.datasets[0].distribution.query).toEqual(
+    expect(catalog.datasets[0].distributions[0].query).toEqual(
       expect.stringContaining('CONSTRUCT {')
     );
     done();
@@ -22,9 +22,14 @@ describe('Catalog', () => {
   });
 
   it('can retrieve datasets by identifier', () => {
-    expect(catalog.getByIdentifier('nope')).toBeUndefined();
+    expect(
+      catalog.getByDistributionIri(new IRI('https://nope.com'))
+    ).toBeUndefined();
     // eslint-disable-next-line @typescript-eslint/no-extra-non-null-assertion
-    const cht = catalog.getByIdentifier('cht')!!;
-    expect(cht.identifier).toEqual('cht');
+    const cht = catalog.getByDistributionIri(
+      new IRI('https://data.cultureelerfgoed.nl/PoolParty/sparql/term/id/cht')
+    )!!;
+    expect(cht).toBeInstanceOf(Dataset);
+    expect(cht.name).toEqual('Cultuurhistorische Thesaurus (CHT)');
   });
 });

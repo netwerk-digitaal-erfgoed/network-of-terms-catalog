@@ -26,9 +26,9 @@ export class Catalog {
         SELECT * WHERE {
           ?dataset a schema:Dataset ;
             schema:distribution ?distribution ;
-            schema:name ?name ;
-            schema:identifier ?identifier .
-          ?distribution schema:contentUrl ?distributionUrl ;
+            schema:name ?name .
+          ?distribution schema:encodingFormat "application/sparql-query" ;
+            schema:contentUrl ?distributionUrl ;
             schema:potentialAction/schema:query ?query .
         }
         ORDER BY LCASE(?name)`;
@@ -46,13 +46,14 @@ export class Catalog {
       result.bindingsStream.on('data', (bindings: Bindings) => {
         datasets.push(
           new Dataset(
-            new URL(bindings.get('?dataset').value),
+            new IRI(bindings.get('?dataset').value),
             bindings.get('?name').value,
-            bindings.get('?identifier').value,
-            new Distribution(
-              new URL(bindings.get('?distributionUrl').value),
-              bindings.get('?query').value
-            )
+            [
+              new Distribution(
+                new IRI(bindings.get('?distributionUrl').value),
+                bindings.get('?query').value
+              ),
+            ]
           )
         );
       });
@@ -63,8 +64,13 @@ export class Catalog {
     return new Catalog(await promise);
   }
 
-  public getByIdentifier(identifier: string): Dataset | undefined {
-    return this.datasets.find(dataset => dataset.identifier === identifier);
+  public getByDistributionIri(iri: IRI): Dataset | undefined {
+    const iriString = iri.toString();
+    return this.datasets.find(dataset =>
+      dataset.distributions.some(
+        distribution => distribution.iri.toString() === iriString
+      )
+    );
   }
 }
 
@@ -72,16 +78,15 @@ export class Dataset {
   constructor(
     readonly iri: IRI,
     readonly name: string,
-    readonly identifier: string,
-    readonly distribution: Distribution
+    readonly distributions: [Distribution]
   ) {}
 }
 
 export class Distribution {
-  constructor(readonly url: URL, readonly query: string) {}
+  constructor(readonly iri: IRI, readonly query: string) {}
 }
 
-export type IRI = URL;
+export class IRI extends URL {}
 
 function addStreamToStore(
   store: RDF.Store,

@@ -18,12 +18,6 @@
         },
         {
           "sh:path": {
-            "@id": "schema:identifier"
-          },
-          "sh:minCount": 1
-        },
-        {
-          "sh:path": {
             "@id": "schema:distribution"
           },
           "sh:minCount": 1,
