@@ -45,6 +45,8 @@ describe('Catalog', () => {
     const distribution = wikidata.getDistributionByIri(distributionIri)!;
     expect(distribution).toBeInstanceOf(SparqlDistribution);
     expect(distribution.iri).toEqual(distributionIri);
-    expect(distribution.endpoint).toEqual(new IRI('https://query.wikidata.org/sparql'));
+    expect(distribution.endpoint).toEqual(
+      new IRI('https://query.wikidata.org/sparql')
+    );
   });
 });
