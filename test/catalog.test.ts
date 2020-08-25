@@ -27,7 +27,7 @@ describe('Catalog', () => {
     expect(catalog.datasets.length).toBe(6);
   });
 
-  it('can retrieve datasets by identifier', () => {
+  it('can retrieve datasets by IRI', () => {
     expect(
       catalog.getDatasetByDistributionIri(new IRI('https://nope.com'))
     ).toBeUndefined();
@@ -39,7 +39,7 @@ describe('Catalog', () => {
     expect(cht.name).toEqual('Cultuurhistorische Thesaurus (CHT)');
   });
 
-  it('can retrieve distributions by identifier', () => {
+  it('can retrieve distributions by IRI', () => {
     const distributionIri = new IRI('https://www.wikidata.org/sparql');
     const wikidata = catalog.getDatasetByDistributionIri(distributionIri)!;
     const distribution = wikidata.getDistributionByIri(distributionIri)!;
