@@ -31,10 +31,9 @@ describe('Catalog', () => {
     expect(
       catalog.getDatasetByDistributionIri(new IRI('https://nope.com'))
     ).toBeUndefined();
-    // eslint-disable-next-line @typescript-eslint/no-extra-non-null-assertion
     const cht = catalog.getDatasetByDistributionIri(
       new IRI('https://data.cultureelerfgoed.nl/PoolParty/sparql/term/id/cht')
-    )!!;
+    )!;
     expect(cht).toBeInstanceOf(Dataset);
     expect(cht.name).toEqual('Cultuurhistorische Thesaurus (CHT)');
   });
