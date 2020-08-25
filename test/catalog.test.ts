@@ -1,4 +1,10 @@
-import {Catalog, Dataset, fromFiles, IRI} from '../src/catalog';
+import {
+  Catalog,
+  Dataset,
+  fromFiles,
+  IRI,
+  SparqlDistribution,
+} from '../src/catalog';
 
 let catalog: Catalog;
 
@@ -23,13 +29,22 @@ describe('Catalog', () => {
 
   it('can retrieve datasets by identifier', () => {
     expect(
-      catalog.getByDistributionIri(new IRI('https://nope.com'))
+      catalog.getDatasetByDistributionIri(new IRI('https://nope.com'))
     ).toBeUndefined();
     // eslint-disable-next-line @typescript-eslint/no-extra-non-null-assertion
-    const cht = catalog.getByDistributionIri(
+    const cht = catalog.getDatasetByDistributionIri(
       new IRI('https://data.cultureelerfgoed.nl/PoolParty/sparql/term/id/cht')
     )!!;
     expect(cht).toBeInstanceOf(Dataset);
     expect(cht.name).toEqual('Cultuurhistorische Thesaurus (CHT)');
+  });
+
+  it('can retrieve distributions by identifier', () => {
+    const distributionIri = new IRI('https://www.wikidata.org/sparql');
+    const wikidata = catalog.getDatasetByDistributionIri(distributionIri)!;
+    const distribution = wikidata.getDistributionByIri(distributionIri)!;
+    expect(distribution).toBeInstanceOf(SparqlDistribution);
+    expect(distribution.iri).toEqual(distributionIri);
+    expect(distribution.endpoint).toEqual(new IRI('https://query.wikidata.org/sparql'));
   });
 });

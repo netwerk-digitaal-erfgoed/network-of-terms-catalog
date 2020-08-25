@@ -28,7 +28,7 @@ export class Catalog {
             schema:distribution ?distribution ;
             schema:name ?name .
           ?distribution schema:encodingFormat "application/sparql-query" ;
-            schema:contentUrl ?distributionUrl ;
+            schema:contentUrl ?endpointUrl ;
             schema:potentialAction/schema:query ?query .
         }
         ORDER BY LCASE(?name)`;
@@ -49,8 +49,9 @@ export class Catalog {
             new IRI(bindings.get('?dataset').value),
             bindings.get('?name').value,
             [
-              new Distribution(
-                new IRI(bindings.get('?distributionUrl').value),
+              new SparqlDistribution(
+                new IRI(bindings.get('?distribution').value),
+                new IRI(bindings.get('?endpointUrl').value),
                 bindings.get('?query').value
               ),
             ]
@@ -64,12 +65,9 @@ export class Catalog {
     return new Catalog(await promise);
   }
 
-  public getByDistributionIri(iri: IRI): Dataset | undefined {
-    const iriString = iri.toString();
-    return this.datasets.find(dataset =>
-      dataset.distributions.some(
-        distribution => distribution.iri.toString() === iriString
-      )
+  public getDatasetByDistributionIri(iri: IRI): Dataset | undefined {
+    return this.datasets.find(
+      dataset => dataset.getDistributionByIri(iri) !== undefined
     );
   }
 }
@@ -80,11 +78,26 @@ export class Dataset {
     readonly name: string,
     readonly distributions: [Distribution]
   ) {}
+
+  public getDistributionByIri(iri: IRI): Distribution | undefined {
+    return this.distributions.find(
+      distribution => distribution.iri.toString() === iri.toString()
+    );
+  }
 }
 
-export class Distribution {
-  constructor(readonly iri: IRI, readonly query: string) {}
+export class SparqlDistribution {
+  constructor(
+    readonly iri: IRI,
+    readonly endpoint: IRI,
+    readonly query: string
+  ) {}
 }
+
+/**
+ * A union type to be extended in the future with other distribution types.
+ */
+export type Distribution = SparqlDistribution;
 
 export class IRI extends URL {}
 
