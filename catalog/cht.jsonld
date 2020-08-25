@@ -10,7 +10,7 @@
   ],
   "distribution": [
     {
-      "id": "https://data.cultureelerfgoed.nl/PoolParty/sparql/term/id/cht",
+      "@id": "https://data.cultureelerfgoed.nl/PoolParty/sparql/term/id/cht",
       "@type": "DataDownload",
       "contentUrl": "https://data.cultureelerfgoed.nl/PoolParty/sparql/term/id/cht",
       "encodingFormat": "application/sparql-query",

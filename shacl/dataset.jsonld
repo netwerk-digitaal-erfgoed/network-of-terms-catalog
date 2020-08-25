@@ -24,7 +24,10 @@
           "sh:class": {
             "@id": "schema:DataDownload"
           },
-          "sh:node": "schema:DistributionShape"
+          "sh:node": "schema:DistributionShape",
+          "sh:nodeKind": {
+            "@id": "sh:IRI"
+          }
         }
       ]
     },
