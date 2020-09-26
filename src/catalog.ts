@@ -121,6 +121,10 @@ export type Distribution = SparqlDistribution;
 
 export class IRI extends URL {}
 
+/**
+ * Return a separate RDF.Store for each catalog file because merging them into a single store
+ * causes blank nodes to be re-used instead of incremented when adding the next file.
+ */
 export async function fromFiles(directory: string): Promise<RDF.Store[]> {
   // Read all files except those in the queries/ directory.
   const files = await globby([directory, '!' + directory + '/queries']);
