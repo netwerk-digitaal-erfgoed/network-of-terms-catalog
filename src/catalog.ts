@@ -147,10 +147,10 @@ class InlineFiles extends Transform {
     encoding: BufferEncoding,
     callback: TransformCallback
   ) {
-    // if (quad.object.value.startsWith('file://')) {
-    //   const file = Path.resolve(__dirname, '../', quad.object.value.substr(7));
-    //   quad.object.value = await fs.promises.readFile(file, 'utf-8');
-    // }
+    if (quad.object.value.startsWith('file://')) {
+      const file = Path.resolve(__dirname, '../', quad.object.value.substr(7));
+      quad.object.value = await fs.promises.readFile(file, 'utf-8');
+    }
 
     this.push(quad, encoding);
 
