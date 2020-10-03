@@ -1,6 +1,6 @@
 {
   "@context": "https://schema.org/docs/jsonldcontext.jsonld",
-  "@id": "https://data.bibliotheken.nl/doc/dataset/brinkman",
+  "@id": "http://data.bibliotheken.nl/id/dataset/brinkman",
   "@type": "Dataset",
   "name": [
     {
