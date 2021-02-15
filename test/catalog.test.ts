@@ -28,7 +28,7 @@ describe('Catalog', () => {
   });
 
   it('can retrieve distributions by IRI', () => {
-    const distributionIri = new IRI('https://www.wikidata.org/entities#all');
+    const distributionIri = new IRI('https://www.wikidata.org/sparql/entities#all');
     const wikidata = catalog.getDatasetByDistributionIri(distributionIri)!;
     const distribution = wikidata.getDistributionByIri(distributionIri)!;
     expect(distribution).toBeInstanceOf(SparqlDistribution);
