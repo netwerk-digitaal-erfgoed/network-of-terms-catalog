@@ -56,7 +56,7 @@ WHERE {
   
     ?item rdfs:label ?prefLabel . 
 
-    # select only the Dutch pref/altLabels en description
+    # select only the Dutch pref/altLabels and description
     FILTER(LANG(?prefLabel) = "nl")
     OPTIONAL {
         ?item skos:altLabel ?altLabel .

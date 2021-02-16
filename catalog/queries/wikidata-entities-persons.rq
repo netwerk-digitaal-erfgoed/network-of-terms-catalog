@@ -20,7 +20,7 @@ WHERE {
         bd:serviceParam wikibase:api "Search" .
         # Note: 
         # Instead of using the "EntitySearch" API we use a more generic text search option
-        # To avoid noice in we filter the resultset on the occurence of the search string
+        # To avoid noise we will filter the resultset on the occurence of the search string
         # in either prefLabel or altLabel
         bd:serviceParam mwapi:language "nl" .
         bd:serviceParam mwapi:srsearch ?query .
@@ -41,6 +41,6 @@ WHERE {
         FILTER(LANG(?description) = "nl")
     }
     # limit the result set to matches in the prefLabels or altLabels
-    FILTER(CONTAINS(LCASE(?prefLabel),?query)||CONTAINS(LCASE(?altLabel),?query))
+    FILTER(CONTAINS(LCASE(?prefLabel),LCASE(?query))||CONTAINS(LCASE(?altLabel),LCASE(?query)))
 }
 LIMIT 1000

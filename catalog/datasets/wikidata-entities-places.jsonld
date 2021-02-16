@@ -1,6 +1,6 @@
 {
   "@context": "https://schema.org/docs/jsonldcontext.jsonld",
-  "@id": "https://www.wikidata.org/entities#places",
+  "@id": "https://www.wikidata.org#entities-places",
   "@type": "Dataset",
   "name": [
     {
@@ -15,7 +15,7 @@
   ],
   "distribution": [
     {
-      "@id": "https://www.wikidata.org/sparql/entities#places",
+      "@id": "https://query.wikidata.org/sparql#entities-places",
       "@type": "DataDownload",
       "contentUrl": "https://query.wikidata.org/sparql",
       "encodingFormat": "application/sparql-query",

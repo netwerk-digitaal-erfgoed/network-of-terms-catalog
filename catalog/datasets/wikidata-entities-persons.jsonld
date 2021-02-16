@@ -1,6 +1,6 @@
 {
   "@context": "https://schema.org/docs/jsonldcontext.jsonld",
-  "@id": "https://www.wikidata.org/entities#persons",
+  "@id": "https://www.wikidata.org#entities-persons",
   "@type": "Dataset",
   "name": [
     {
@@ -15,7 +15,7 @@
   ],
   "distribution": [
     {
-      "@id": "https://www.wikidata.org/sparql/entities#persons",
+      "@id": "https://query.wikidata.org/sparql#entities-persons",
       "@type": "DataDownload",
       "contentUrl": "https://query.wikidata.org/sparql",
       "encodingFormat": "application/sparql-query",

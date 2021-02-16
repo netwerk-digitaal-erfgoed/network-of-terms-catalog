@@ -1,6 +1,6 @@
 {
   "@context": "https://schema.org/docs/jsonldcontext.jsonld",
-  "@id": "https://www.wikidata.org/entities#all",
+  "@id": "https://www.wikidata.org#entities-all",
   "@type": "Dataset",
   "name": [
     {
@@ -15,7 +15,7 @@
   ],
   "distribution": [
     {
-      "@id": "https://www.wikidata.org/sparql/entities#all",
+      "@id": "https://query.wikidata.org/sparql#entities-all",
       "@type": "DataDownload",
       "contentUrl": "https://query.wikidata.org/sparql",
       "encodingFormat": "application/sparql-query",
