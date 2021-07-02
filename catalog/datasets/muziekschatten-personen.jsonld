@@ -1,0 +1,28 @@
+{
+  "@context": "https://schema.org/docs/jsonldcontext.jsonld",
+  "@id": "http://data.muziekschatten.nl/#personen",
+  "@type": "Dataset",
+  "name": [
+    {
+      "@language": "nl",
+      "@value": "Muziekschatten: personen en corporaties"
+    }
+  ],
+  "creator": [
+    {
+      "@id": "https://www.omroepmuziek.nl"
+    }
+  ],
+  "distribution": [
+    {
+      "@id": "https://data.muziekschatten.nl/sparql/#personen",
+      "@type": "DataDownload",
+      "contentUrl": "https://data.muziekschatten.nl/sparql",
+      "encodingFormat": "application/sparql-query",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "query": "file://catalog/queries/muziekschatten-personen.rq"
+      }
+    }
+  ]
+}

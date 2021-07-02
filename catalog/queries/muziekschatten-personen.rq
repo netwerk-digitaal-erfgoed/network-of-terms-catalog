@@ -1,0 +1,47 @@
+PREFIX som: <http://data.muziekschatten.nl/som/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+CONSTRUCT {
+  ?uri a skos:Concept;
+       skos:prefLabel ?prefLabel ;
+       owl:sameAs ?sameAs ;
+       skos:scopeNote "Muziekschatten: personen en corporaties. Vocabulaire van geautoriseerde persoons- en corporatienamen, gerelateerd aan de bladmuziekcollectie van de Stichting Omroep Muziek."
+}
+WHERE {
+  ?uri a schema:Person .
+
+  # require the presence of this properties for quality purposes
+  ?uri som:NDEREC ?nderec .
+
+  ?uri schema:name ?label .
+
+  OPTIONAL {
+    ?uri schema:familyName ?familyName
+  }
+  
+  OPTIONAL {
+    ?uri schema:givenName ?givenName
+  }
+  
+  OPTIONAL {
+   ?uri owl:sameAs ?sameAs
+  }
+
+  OPTIONAL {
+   ?uri som:SDAT ?deathYear
+  }
+  
+  OPTIONAL {
+   ?uri som:GDAT ?birthYear
+  }
+
+  # Replace query "A B" with "A AND B", leaving queries "A AND B" or "A OR B" unchanged.
+  FILTER (<bif:contains> (?label, REPLACE(?query, "(?<!AND)(?<!OR)[[:space:]]+(?!AND)(?!OR)", " AND ", "i")))
+
+  BIND( COALESCE(CONCAT(?familyName,", ",?givenName),?familyName,?givenName,"no name") as ?name)
+  BIND( COALESCE(CONCAT(?birthYear,"-",?deathYear),?birthYear,?deathYear,"no years") as ?years_temp)
+  BIND( IF (?years_temp = "-","no years",?years_temp) as ?years)
+  BIND( IF (?name = "no name",?label,?name) as ?namePart )
+  BIND( IF (?years = "no years",?namePart,CONCAT(?namePart," (",?years,")")) as ?prefLabel)
+}
+LIMIT 1000
