@@ -19,10 +19,23 @@
       "@type": "DataDownload",
       "contentUrl": "https://data.muziekschatten.nl/sparql",
       "encodingFormat": "application/sparql-query",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "query": "file://catalog/queries/muziekschatten-onderwerpen.rq"
-      }
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "query": "file://catalog/queries/search/muziekschatten-onderwerpen.rq"
+        },
+        {
+          "@type": "FindAction",
+          "query": "file://catalog/queries/lookup/muziekschatten.rq",
+          "identifier": [
+            {
+              "@type": "PropertyValue",
+              "propertyID": "URI Prefix",
+              "value": "https://data.muziekschatten.nl/som/"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
