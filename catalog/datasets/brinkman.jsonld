@@ -25,10 +25,23 @@
       "@type": "DataDownload",
       "contentUrl": "http://data.bibliotheken.nl/sparql",
       "encodingFormat": "application/sparql-query",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "query": "file://catalog/queries/brinkman.rq"
-      }
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "query": "file://catalog/queries/search/brinkman.rq"
+        },
+        {
+          "@type": "FindAction",
+          "query": "file://catalog/queries/lookup/brinkman-nta.rq",
+          "identifier": [
+            {
+              "@type": "PropertyValue",
+              "propertyID": "URI Prefix",
+              "value": "http://data.bibliotheken.nl/id/thes/"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

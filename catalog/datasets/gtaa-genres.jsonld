@@ -19,10 +19,23 @@
       "@type": "DataDownload",
       "contentUrl": "https://api.data.netwerkdigitaalerfgoed.nl/datasets/beeldengeluid/gtaa-genres/services/gtaa-genres/sparql",
       "encodingFormat": "application/sparql-query",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "query": "file://catalog/queries/gtaa.rq"
-      }
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "query": "file://catalog/queries/search/gtaa.rq"
+        },
+        {
+          "@type": "FindAction",
+          "query": "file://catalog/queries/lookup/gtaa.rq",
+          "identifier": [
+            {
+              "@type": "PropertyValue",
+              "propertyID": "URI Prefix",
+              "value": "http://data.beeldengeluid.nl/gtaa/"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -19,10 +19,23 @@
       "@type": "DataDownload",
       "contentUrl": "https://query.wikidata.org/sparql",
       "encodingFormat": "application/sparql-query",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "query": "file://catalog/queries/wikidata-entities-places.rq"
-      }
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "query": "file://catalog/queries/search/wikidata-entities-places.rq"
+        },
+        {
+          "@type": "FindAction",
+          "query": "file://catalog/queries/lookup/wikidata.rq",
+          "identifier": [
+            {
+              "@type": "PropertyValue",
+              "propertyID": "URI Prefix",
+              "value": "http://www.wikidata.org/entity/"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

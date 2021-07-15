@@ -19,10 +19,23 @@
       "@type": "DataDownload",
       "contentUrl": "https://api.data.netwerkdigitaalerfgoed.nl/datasets/rkd/rkdartists/services/rkdartists/sparql",
       "encodingFormat": "application/sparql-query",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "query": "file://catalog/queries/rkdartists.rq"
-      }
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "query": "file://catalog/queries/search/rkdartists.rq"
+        },
+        {
+          "@type": "FindAction",
+          "query": "file://catalog/queries/lookup/rkdartists.rq",
+          "identifier": [
+            {
+              "@type": "PropertyValue",
+              "propertyID": "URI Prefix",
+              "value": "https://data.rkd.nl/artists/"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

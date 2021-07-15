@@ -25,10 +25,23 @@
       "@type": "DataDownload",
       "contentUrl": "http://vocab.getty.edu/sparql",
       "encodingFormat": "application/sparql-query",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "query": "file://catalog/queries/aat.rq"
-      }
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "query": "file://catalog/queries/search/aat.rq"
+        },
+        {
+          "@type": "FindAction",
+          "query": "file://catalog/queries/lookup/aat.rq",
+          "identifier": [
+            {
+              "@type": "PropertyValue",
+              "propertyID": "URI Prefix",
+              "value": "http://vocab.getty.edu/aat/"
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -25,10 +25,23 @@
       "@type": "DataDownload",
       "contentUrl": "https://data.cultureelerfgoed.nl/PoolParty/sparql/term/id/abr",
       "encodingFormat": "application/sparql-query",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "query": "file://catalog/queries/abr.rq"
-      }
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "query": "file://catalog/queries/search/abr.rq"
+        },
+        {
+          "@type": "FindAction",
+          "query": "file://catalog/queries/lookup/abr-cht.rq",
+          "identifier": [
+            {
+              "@type": "PropertyValue",
+              "propertyID": "URI Prefix",
+              "value": "https://data.cultureelerfgoed.nl/term/id/abr/"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
