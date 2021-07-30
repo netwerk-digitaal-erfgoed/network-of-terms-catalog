@@ -19,6 +19,9 @@
       "@id": "https://www.cultureelerfgoed.nl"
     }
   ],
+  "url": [
+    "https://data.cultureelerfgoed.nl/term/id/abr/"
+  ],
   "distribution": [
     {
       "@id": "https://data.cultureelerfgoed.nl/PoolParty/sparql/term/id/abr",
@@ -32,14 +35,7 @@
         },
         {
           "@type": "FindAction",
-          "query": "file://catalog/queries/lookup/abr-cht.rq",
-          "identifier": [
-            {
-              "@type": "PropertyValue",
-              "propertyID": "URI Prefix",
-              "value": "https://data.cultureelerfgoed.nl/term/id/abr/"
-            }
-          ]
+          "query": "file://catalog/queries/lookup/abr-cht.rq"
         }
       ]
     }

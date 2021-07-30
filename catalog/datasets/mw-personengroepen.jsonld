@@ -13,6 +13,9 @@
       "@id": "https://www.muziekweb.nl"
     }
   ],
+  "url": [
+    "https://data.muziekweb.nl/Link/"
+  ],
   "distribution": [
     {
       "@id": "https://data.muziekweb.nl/MuziekwebOrganization/Muziekweb/sparql/Muziekweb#mw-personengroepen",
@@ -26,14 +29,7 @@
         },
         {
           "@type": "FindAction",
-          "query": "file://catalog/queries/lookup/muziekweb.rq",
-          "identifier": [
-            {
-              "@type": "PropertyValue",
-              "propertyID": "URI Prefix",
-              "value": "https://data.muziekweb.nl/Link/"
-            }
-          ]
+          "query": "file://catalog/queries/lookup/muziekweb.rq"
         }
       ]
     }

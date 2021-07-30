@@ -13,6 +13,9 @@
       "@id": "http://www.wereldculturen.nl"
     }
   ],
+  "url": [
+    "https://hdl.handle.net/20.500.11840/"
+  ],
   "distribution": [
     {
       "@id": "https://data.netwerkdigitaalerfgoed.nl/NMVW/thesaurus/sparql",
@@ -26,14 +29,7 @@
         },
         {
           "@type": "FindAction",
-          "query": "file://catalog/queries/lookup/nmvw.rq",
-          "identifier": [
-            {
-              "@type": "PropertyValue",
-              "propertyID": "URI Prefix",
-              "value": "https://hdl.handle.net/20.500.11840/"
-            }
-          ]
+          "query": "file://catalog/queries/lookup/nmvw.rq"
         }
       ]
     }

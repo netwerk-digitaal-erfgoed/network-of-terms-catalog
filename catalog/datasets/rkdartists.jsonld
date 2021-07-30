@@ -13,6 +13,9 @@
       "@id": "https://rkd.nl"
     }
   ],
+  "url": [
+    "https://data.rkd.nl/artists/"
+  ],
   "distribution": [
     {
       "@id": "https://data.netwerkdigitaalerfgoed.nl/rkd/rkdartists/sparql",
@@ -26,14 +29,7 @@
         },
         {
           "@type": "FindAction",
-          "query": "file://catalog/queries/lookup/rkdartists.rq",
-          "identifier": [
-            {
-              "@type": "PropertyValue",
-              "propertyID": "URI Prefix",
-              "value": "https://data.rkd.nl/artists/"
-            }
-          ]
+          "query": "file://catalog/queries/lookup/rkdartists.rq"
         }
       ]
     }

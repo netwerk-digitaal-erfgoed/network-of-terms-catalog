@@ -13,6 +13,9 @@
       "@id": "https://www.wikidata.org/entity/Q180"
     }
   ],
+  "url": [
+    "http://www.wikidata.org/entity/"
+  ],
   "distribution": [
     {
       "@id": "https://query.wikidata.org/sparql#entities-persons",
@@ -26,14 +29,7 @@
         },
         {
           "@type": "FindAction",
-          "query": "file://catalog/queries/lookup/wikidata.rq",
-          "identifier": [
-            {
-              "@type": "PropertyValue",
-              "propertyID": "URI Prefix",
-              "value": "http://www.wikidata.org/entity/"
-            }
-          ]
+          "query": "file://catalog/queries/lookup/wikidata.rq"
         }
       ]
     }

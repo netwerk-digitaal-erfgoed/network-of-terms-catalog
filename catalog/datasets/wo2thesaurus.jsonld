@@ -19,6 +19,9 @@
       "@id": "https://www.niod.nl"
     }
   ],
+  "url": [
+    "https://data.niod.nl/WO2_Thesaurus/"
+  ],
   "distribution": [
     {
       "@id": "https://data.niod.nl/PoolParty/sparql/WO2_Thesaurus",
@@ -32,14 +35,7 @@
         },
         {
           "@type": "FindAction",
-          "query": "file://catalog/queries/lookup/wo2thesaurus.rq",
-          "identifier": [
-            {
-              "@type": "PropertyValue",
-              "propertyID": "URI Prefix",
-              "value": "https://data.niod.nl/WO2_Thesaurus/"
-            }
-          ]
+          "query": "file://catalog/queries/lookup/wo2thesaurus.rq"
         }
       ]
     }

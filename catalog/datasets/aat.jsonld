@@ -19,6 +19,9 @@
       "@id": "http://www.getty.edu/research/"
     }
   ],
+  "url": [
+    "http://vocab.getty.edu/aat/"
+  ],
   "distribution": [
     {
       "@id": "http://vocab.getty.edu/aat/sparql",
@@ -32,14 +35,7 @@
         },
         {
           "@type": "FindAction",
-          "query": "file://catalog/queries/lookup/aat.rq",
-          "identifier": [
-            {
-              "@type": "PropertyValue",
-              "propertyID": "URI Prefix",
-              "value": "http://vocab.getty.edu/aat/"
-            }
-          ]
+          "query": "file://catalog/queries/lookup/aat.rq"
         }
       ]
     }

@@ -13,6 +13,9 @@
       "@id": "https://www.omroepmuziek.nl"
     }
   ],
+  "url": [
+    "https://data.muziekschatten.nl/som/"
+  ],
   "distribution": [
     {
       "@id": "https://data.muziekschatten.nl/sparql/#onderwerpen",
@@ -26,14 +29,7 @@
         },
         {
           "@type": "FindAction",
-          "query": "file://catalog/queries/lookup/muziekschatten.rq",
-          "identifier": [
-            {
-              "@type": "PropertyValue",
-              "propertyID": "URI Prefix",
-              "value": "https://data.muziekschatten.nl/som/"
-            }
-          ]
+          "query": "file://catalog/queries/lookup/muziekschatten.rq"
         }
       ]
     }
