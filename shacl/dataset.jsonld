@@ -79,9 +79,25 @@
           "sh:path": {
             "@id": "schema:potentialAction"
           },
-          "sh:minCount": 2,
-          "sh:maxCount": 2,
-          "sh:node": "schema:PotentialActionShape"
+          "sh:qualifiedValueShape": {
+            "sh:class": {
+              "@id": "schema:SearchAction"
+            }
+          },
+          "sh:qualifiedMinCount": 1,
+          "sh:qualifiedMaxCount": 1
+        },
+        {
+          "sh:path": {
+            "@id": "schema:potentialAction"
+          },
+          "sh:qualifiedValueShape": {
+            "sh:class": {
+              "@id": "schema:FindAction"
+            }
+          },
+          "sh:qualifiedMinCount": 1,
+          "sh:qualifiedMaxCount": 1
         }
       ]
     },
@@ -107,16 +123,25 @@
       ]
     },
     {
-      "@id": "schema:PotentialActionShape",
       "@type": "sh:NodeShape",
-      "sh:targetClass": [
+      "sh:targetClass": {
+        "@id": "schema:SearchAction"
+      },
+      "sh:property": [
         {
-          "@id": "schema:SearchAction"
-        },
-        {
-          "@id": "schema:FindAction"
+          "sh:path": {
+            "@id": "schema:query"
+          },
+          "sh:minCount": 1,
+          "sh:maxCount": 1
         }
-      ],
+      ]
+    },
+    {
+      "@type": "sh:NodeShape",
+      "sh:targetClass": {
+        "@id": "schema:FindAction"
+      },
       "sh:property": [
         {
           "sh:path": {
