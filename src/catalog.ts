@@ -28,15 +28,16 @@ export class Catalog {
           ?dataset a schema:Dataset ;
             schema:name ?name ;
             schema:creator ?creator ;
-            schema:distribution ?distribution .
+            schema:distribution ?distribution ;
+            schema:url ?url .
           OPTIONAL { ?dataset schema:alternateName ?alternateName . }
           ?creator schema:name ?creatorName ;
             schema:alternateName ?creatorAlternateName .
           ?distribution schema:encodingFormat "application/sparql-query" ;
             schema:contentUrl ?endpointUrl ;
-            schema:potentialAction ?potentialAction .
-          ?potentialAction a schema:SearchAction ;
-            schema:query ?query .
+            schema:potentialAction 
+                [a schema:SearchAction ; schema:query ?searchQuery ] ,
+                [a schema:FindAction ; schema:query ?lookupQuery ] .
         }
         ORDER BY LCASE(?name)`;
     const result = (await newEngine().query(query, {
@@ -50,6 +51,7 @@ export class Catalog {
           new Dataset(
             new IRI(bindings.get('?dataset').value),
             bindings.get('?name').value,
+            new IRI(bindings.get('?url').value),
             [
               new Organization(
                 new IRI(bindings.get('?creator').value),
@@ -61,7 +63,8 @@ export class Catalog {
               new SparqlDistribution(
                 new IRI(bindings.get('?distribution').value),
                 new IRI(bindings.get('?endpointUrl').value),
-                bindings.get('?query').value
+                bindings.get('?searchQuery').value,
+                bindings.get('?lookupQuery').value
               ),
             ],
             bindings.get('?alternateName')
@@ -88,6 +91,7 @@ export class Dataset {
   constructor(
     readonly iri: IRI,
     readonly name: string,
+    readonly urlPrefix: IRI,
     readonly creators: [Organization],
     readonly distributions: [Distribution],
     readonly alternateName?: string
@@ -112,7 +116,8 @@ export class SparqlDistribution {
   constructor(
     readonly iri: IRI,
     readonly endpoint: IRI,
-    readonly query: string
+    readonly searchQuery: string,
+    readonly lookupQuery: string
   ) {}
 }
 

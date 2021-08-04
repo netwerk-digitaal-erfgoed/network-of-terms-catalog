@@ -15,11 +15,15 @@ describe('Catalog', () => {
     expect(
       catalog.getDatasetByDistributionIri(new IRI('https://nope.com'))
     ).toBeUndefined();
+
     const cht = catalog.getDatasetByDistributionIri(
       new IRI('https://data.cultureelerfgoed.nl/PoolParty/sparql/term/id/cht')
     )!;
     expect(cht).toBeInstanceOf(Dataset);
     expect(cht.name).toEqual('Cultuurhistorische Thesaurus');
+    expect(cht.urlPrefix).toEqual(
+      new IRI('https://data.cultureelerfgoed.nl/term/id/cht/')
+    );
     expect(cht.alternateName).toEqual('CHT');
     expect(cht.creators[0].name).toEqual(
       'Rijksdienst voor het Cultureel Erfgoed'
@@ -38,5 +42,7 @@ describe('Catalog', () => {
     expect(distribution.endpoint).toEqual(
       new IRI('https://query.wikidata.org/sparql')
     );
+    expect(distribution.searchQuery).toMatch(/CONSTRUCT/);
+    expect(distribution.lookupQuery).toMatch(/CONSTRUCT/);
   });
 });
