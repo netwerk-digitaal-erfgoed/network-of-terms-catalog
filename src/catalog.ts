@@ -22,9 +22,11 @@ export class Catalog {
   }
 
   public static async fromStore(store: RDF.Store[]): Promise<Catalog> {
+    const properties =
+      '?dataset ?name ?creator ?creatorName ?creatorAlternateName ?distribution ?endpointUrl ?searchQuery ?lookupQuery ?alternateName';
     const query = `
       PREFIX schema: <http://schema.org/>
-        SELECT * WHERE {
+        SELECT ${properties} (GROUP_CONCAT(?url) as ?url) WHERE {
           ?dataset a schema:Dataset ;
             schema:name ?name ;
             schema:creator ?creator ;
@@ -39,7 +41,7 @@ export class Catalog {
                 [a schema:SearchAction ; schema:query ?searchQuery ] ,
                 [a schema:FindAction ; schema:query ?lookupQuery ] .
         }
-        ORDER BY LCASE(?name)`;
+        GROUP BY ${properties}`;
     const result = (await newEngine().query(query, {
       sources: store,
     })) as IActorQueryOperationOutputBindings;
@@ -51,7 +53,10 @@ export class Catalog {
           new Dataset(
             new IRI(bindings.get('?dataset').value),
             bindings.get('?name').value,
-            new IRI(bindings.get('?url').value),
+            bindings
+              .get('?url')
+              .value.split(' ')
+              .map(url => new IRI(url)),
             [
               new Organization(
                 new IRI(bindings.get('?creator').value),
@@ -91,7 +96,7 @@ export class Dataset {
   constructor(
     readonly iri: IRI,
     readonly name: string,
-    readonly urlPrefix: IRI,
+    readonly termsPrefixes: IRI[],
     readonly creators: [Organization],
     readonly distributions: [Distribution],
     readonly alternateName?: string

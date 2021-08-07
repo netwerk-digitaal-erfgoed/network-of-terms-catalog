@@ -21,7 +21,7 @@ describe('Catalog', () => {
     )!;
     expect(cht).toBeInstanceOf(Dataset);
     expect(cht.name).toEqual('Cultuurhistorische Thesaurus');
-    expect(cht.urlPrefix).toEqual(
+    expect(cht.termsPrefixes[0]).toEqual(
       new IRI('https://data.cultureelerfgoed.nl/term/id/cht/')
     );
     expect(cht.alternateName).toEqual('CHT');
