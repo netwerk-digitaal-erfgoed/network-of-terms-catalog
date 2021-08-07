@@ -90,6 +90,14 @@ export class Catalog {
       dataset => dataset.getDistributionByIri(iri) !== undefined
     );
   }
+
+  public getDatasetByTermIri(iri: IRI): Dataset | undefined {
+    return this.datasets.find(dataset =>
+      dataset.termsPrefixes.some(termPrefix =>
+        iri.toString().startsWith(termPrefix.toString())
+      )
+    );
+  }
 }
 
 export class Dataset {

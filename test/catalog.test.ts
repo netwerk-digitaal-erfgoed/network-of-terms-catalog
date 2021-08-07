@@ -21,9 +21,9 @@ describe('Catalog', () => {
     )!;
     expect(cht).toBeInstanceOf(Dataset);
     expect(cht.name).toEqual('Cultuurhistorische Thesaurus');
-    expect(cht.termsPrefixes[0]).toEqual(
-      new IRI('https://data.cultureelerfgoed.nl/term/id/cht/')
-    );
+    expect(cht.termsPrefixes).toEqual([
+      new IRI('https://data.cultureelerfgoed.nl/term/id/cht/'),
+    ]);
     expect(cht.alternateName).toEqual('CHT');
     expect(cht.creators[0].name).toEqual(
       'Rijksdienst voor het Cultureel Erfgoed'
@@ -44,5 +44,16 @@ describe('Catalog', () => {
     );
     expect(distribution.searchQuery).toMatch(/CONSTRUCT/);
     expect(distribution.lookupQuery).toMatch(/CONSTRUCT/);
+  });
+
+  it('can retrieve dataset by term IRI', () => {
+    expect(
+      catalog.getDatasetByTermIri(new IRI('https://nope'))
+    ).toBeUndefined();
+    const rkd = catalog.getDatasetByTermIri(
+      new IRI('https://data.rkd.nl/artists/123')
+    );
+    expect(rkd).toBeInstanceOf(Dataset);
+    expect(rkd?.iri).toEqual(new IRI('https://data.rkd.nl/rkdartists'));
   });
 });
