@@ -72,9 +72,7 @@ export class Catalog {
                 bindings.get('?lookupQuery').value
               ),
             ],
-            bindings.get('?alternateName')
-              ? bindings.get('?alternateName').value
-              : undefined
+            bindings.get('?alternateName')?.value
           )
         );
       });
