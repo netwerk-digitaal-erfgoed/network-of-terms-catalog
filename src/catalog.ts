@@ -22,6 +22,7 @@ export class Catalog {
   }
 
   public static async fromStore(store: RDF.Store[]): Promise<Catalog> {
+    // Collect all properties for SELECT and GROUP BY so we can flatten the schema:url values into a single value.
     const properties =
       '?dataset ?name ?creator ?creatorName ?creatorAlternateName ?distribution ?endpointUrl ?searchQuery ?lookupQuery ?alternateName';
     const query = `
@@ -55,7 +56,7 @@ export class Catalog {
             bindings.get('?name').value,
             bindings
               .get('?url')
-              .value.split(' ')
+              .value.split(' ') // The single value is space-delineated.
               .map(url => new IRI(url)),
             [
               new Organization(
