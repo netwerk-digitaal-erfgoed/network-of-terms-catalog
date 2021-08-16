@@ -36,10 +36,10 @@ WHERE {
     ?label <bif:contains> ?query .
 
     OPTIONAL { ?uri schema:name ?schema_name }
-  	OPTIONAL { ?uri schema:alternateName ?schema_alternateName }
+    OPTIONAL { ?uri schema:alternateName ?schema_alternateName }
     OPTIONAL { ?uri schema:hasOccupation ?schema_hasOccupation }
 
-  	OPTIONAL { ?uri schema:familyName ?schema_familyName }
+    OPTIONAL { ?uri schema:familyName ?schema_familyName }
     OPTIONAL { ?uri schema:givenName ?schema_givenName }
     BIND(
         COALESCE(
