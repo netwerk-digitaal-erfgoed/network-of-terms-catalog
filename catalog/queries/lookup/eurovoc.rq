@@ -1,18 +1,16 @@
-PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX bif: <http://www.openlinksw.com/schemas/bif#>
-PREFIX http: <http://www.w3.org/2011/http#>
 PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 
 CONSTRUCT {
     ?uri a skos:Concept ;
         skos:prefLabel ?prefLabel ;
         skos:altLabel ?altLabel ;
         skos:broader ?broader_uri ;
-        skos:narrower ?narrower_uri .
+        skos:narrower ?narrower_uri ;
+        skos:related ?related_uri .
     ?broader_uri skos:prefLabel ?broader_prefLabel .
     ?narrower_uri skos:prefLabel ?narrower_prefLabel . 
+    ?related_uri skos:prefLabel ?related_prefLabel .
 }
 WHERE {
     #For example:
@@ -35,6 +33,11 @@ WHERE {
         ?uri skos:narrower ?narrower_uri .
         ?narrower_uri skos:prefLabel ?narrower_prefLabel .
         FILTER(LANG(?narrower_prefLabel) = "nl")
+    }
+    OPTIONAL {
+        ?uri skos:related ?related_uri .
+        ?related_uri skos:prefLabel ?related_prefLabel .
+        FILTER(LANG(?related_prefLabel) = "nl")
     }
 }
 LIMIT 1000
