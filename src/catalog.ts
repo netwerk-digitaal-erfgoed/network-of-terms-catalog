@@ -38,12 +38,12 @@ export class Catalog {
             schema:alternateName ?creatorAlternateName .
           ?distribution schema:encodingFormat "application/sparql-query" ;
             schema:contentUrl ?endpointUrl ;
-            schema:potentialAction 
+            schema:potentialAction
                 [a schema:SearchAction ; schema:query ?searchQuery ] ,
                 [a schema:FindAction ; schema:query ?lookupQuery ] .
         }
         GROUP BY ${properties}
-        ORDER BY LCASE(?name)`;
+        ORDER BY ?name`;
     const result = (await newEngine().query(query, {
       sources: store,
     })) as IActorQueryOperationOutputBindings;
