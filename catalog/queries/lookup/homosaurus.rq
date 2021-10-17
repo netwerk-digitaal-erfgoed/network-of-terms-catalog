@@ -16,7 +16,7 @@ CONSTRUCT {
 }
 WHERE {
   # For example:
-  # Water: http://homosaurus.org/v3/homoit0000308
+  # Cottages: http://homosaurus.org/v3/homoit0000308
   # the vocabulary has no language labels, all text is default in English
   VALUES ?uri { ?uris }
   OPTIONAL {

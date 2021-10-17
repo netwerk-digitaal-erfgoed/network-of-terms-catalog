@@ -5,6 +5,10 @@
   "name": [
     {
       "@language": "nl",
+      "@value": "Homosaurus - Internationale thesaurus voor LGBTQ begrippen"
+    },
+    {
+      "@language": "en",
       "@value": "Homosaurus - International vocabulary of LGBTQ terms"
     }
   ],
