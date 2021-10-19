@@ -18,7 +18,7 @@
   ],
   "distribution": [
     {
-      "@id": "http://publications.europa.eu/webapi/rdf/sparql",
+      "@id": "http://publications.europa.eu/webapi/rdf/sparql#eurovoc",
       "@type": "DataDownload",
       "contentUrl": "http://publications.europa.eu/webapi/rdf/sparql",
       "encodingFormat": "application/sparql-query",
