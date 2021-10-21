@@ -9,7 +9,7 @@ CONSTRUCT {
         skos:scopeNote ?scopeNote .
 }
 WHERE {
-  	?uri void:inDataset <https://data.adamlink.nl/adamnet/geography/> .
+    ?uri void:inDataset <https://data.adamlink.nl/adamnet/geography/> .
     ?uri a hg:Street .
     ?uri ?predicate ?label .
     VALUES ?predicate { skos:prefLabel skos:altLabel }
