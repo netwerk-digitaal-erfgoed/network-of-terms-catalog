@@ -22,7 +22,7 @@ WHERE {
     # Music genre: <https://data.muziekweb.nl/Link/T00000000050>
     VALUES ?uri { ?uris }
 
-  	?uri a ?type .
+    ?uri a ?type .
     VALUES ?type { muziekweb:Genre schema:MusicGroup } .
 
     OPTIONAL { ?uri rdfs:label ?rdfs_label }

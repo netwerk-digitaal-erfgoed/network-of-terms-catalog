@@ -20,7 +20,7 @@ WHERE {
     # Genre: <http://data.beeldengeluid.nl/gtaa/30115>
     VALUES ?uri { ?uris }
 
-  	?uri a skos:Concept .
+    ?uri a skos:Concept .
 
     OPTIONAL {
         ?uri skos:prefLabel ?prefLabel .
