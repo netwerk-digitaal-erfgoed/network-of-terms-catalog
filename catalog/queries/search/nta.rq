@@ -12,15 +12,7 @@ WHERE {
     ?uri ?predicate ?label .
     VALUES ?predicate { rdfs:label schema:name schema:alternateName }
 
-    # Replace query "A B" with "A AND B", leaving queries "A AND B" or "A OR B" unchanged.
-    FILTER (<bif:contains> (?label,
-        REPLACE(
-            REPLACE(?query, "[.,]", " "),
-            "(?<!AND)(?<!OR)[[:space:]]+(?!AND)(?!OR)(?!$)(?![[:space:]])",
-            " AND ",
-            "i"
-        )
-    ))
+    FILTER (<bif:contains> (?label, ?booleanQuery))
 
     OPTIONAL { ?uri rdfs:label ?rdfs_label }
     OPTIONAL { ?uri schema:name ?schema_name }

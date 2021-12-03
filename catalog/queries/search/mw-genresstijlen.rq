@@ -15,8 +15,7 @@ WHERE {
     ?uri a muziekweb:Genre .
     ?uri rdfs:label ?rdfs_label .
 
-    # Replace query "A B" with "A AND B", leaving queries "A AND B" or "A OR B" unchanged.
-    FILTER (<bif:contains> (?rdfs_label, REPLACE(?query, "(?<!AND)(?<!OR)[[:space:]]+(?!AND)(?!OR)", " AND ", "i")))
+    FILTER (<bif:contains> (?rdfs_label, ?booleanQuery))
 
     OPTIONAL {
         ?uri skos:broader ?broader_uri .
